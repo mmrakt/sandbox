@@ -1,0 +1,16 @@
+name: Release
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+jobs:
+  Release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      name: Update version
+        uses: mmrakt/update-chrome-extension-version-action@v0.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
